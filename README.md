@@ -1,6 +1,6 @@
 # weather_app
 
-A new Flutter project.
+A weather app is a software application designed to provide users with up-to-date information about current and future weather conditions in their location or any other location of interest
 
 ## Getting Started
 

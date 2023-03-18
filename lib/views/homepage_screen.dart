@@ -167,12 +167,51 @@ class HomepageScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 7,
                 itemBuilder: (context, index) {
+                  var day = DateFormat("EEEE").format(
+                    DateTime.now().add(
+                      Duration(days: index),
+                    ),
+                  );
                   return Card(
+                    elevation: 1,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 12),
+                          horizontal: 10, vertical: 10),
                       child: Row(
-                        children: const [],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(child: day.text.semiBold.make()),
+                          Expanded(
+                            child: TextButton.icon(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                "assets/weather/50n.png",
+                                width: 40,
+                                height: 40,
+                              ),
+                              label: "20\u00B0 ".text.gray800.make(),
+                            ),
+                          ),
+                          RichText(
+                            text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: "38\u00B0",
+                                    style: TextStyle(
+                                      color: Vx.gray800,
+                                      fontSize: 16,
+                                    )),
+                                TextSpan(
+                                  text: "26\u00B0",
+                                  style: TextStyle(
+                                    color: Vx.gray600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );

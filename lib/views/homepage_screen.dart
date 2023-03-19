@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:weather_app/consts/images.dart';
@@ -9,19 +10,23 @@ class HomepageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var date = DateFormat("yMMMMd").format(DateTime.now());
+    var theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: date.text.gray700.make(),
+        title: date.text.color(theme.iconTheme.color).make(),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.changeTheme(ThemeData.dark());
+            },
             icon: const Icon(Icons.light_mode_outlined),
-            color: Vx.gray600,
+            color: theme.iconTheme.color,
           ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.more_vert_outlined),
-            color: Vx.gray600,
+            color: theme.iconTheme.color,
           ),
         ],
       ),
@@ -32,7 +37,13 @@ class HomepageScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              "Kathmandu".text.bold.size(30).letterSpacing(3).make(),
+              "Kathmandu"
+                  .text
+                  .bold
+                  .size(30)
+                  .letterSpacing(3)
+                  .color(theme.iconTheme.color)
+                  .make(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,20 +55,20 @@ class HomepageScreen extends StatelessWidget {
                     width: 10,
                   ),
                   RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
                           text: "30\u00B0 ",
                           style: TextStyle(
-                            color: Vx.gray900,
+                            color: theme.iconTheme.color,
                             fontSize: 30,
                           ),
                         ),
                         TextSpan(
                           text: "Sunny",
                           style: TextStyle(
-                            color: Vx.gray900,
-                            letterSpacing: 3,
+                            color: theme.iconTheme.color,
+                            letterSpacing: 2,
                             fontSize: 14,
                           ),
                         ),
@@ -71,19 +82,19 @@ class HomepageScreen extends StatelessWidget {
                 children: [
                   TextButton.icon(
                     onPressed: () {},
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.expand_less_outlined,
-                      color: Vx.gray400,
+                      color: theme.iconTheme.color,
                     ),
-                    label: "14\u00B0 ".text.make(),
+                    label: "14\u00B0 ".text.color(theme.iconTheme.color).make(),
                   ),
                   TextButton.icon(
                     onPressed: () {},
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.expand_more_outlined,
-                      color: Vx.gray400,
+                      color: theme.iconTheme.color,
                     ),
-                    label: "20\u00B0 ".text.make(),
+                    label: "20\u00B0 ".text.color(theme.iconTheme.color).make(),
                   ),
                 ],
               ),
@@ -189,22 +200,25 @@ class HomepageScreen extends StatelessWidget {
                                 width: 40,
                                 height: 40,
                               ),
-                              label: "20\u00B0 ".text.gray800.make(),
+                              label: "20\u00B0 "
+                                  .text
+                                  .color(theme.iconTheme.color)
+                                  .make(),
                             ),
                           ),
                           RichText(
-                            text: const TextSpan(
+                            text: TextSpan(
                               children: [
                                 TextSpan(
                                     text: "38\u00B0",
                                     style: TextStyle(
-                                      color: Vx.gray800,
+                                      color: theme.iconTheme.color,
                                       fontSize: 16,
                                     )),
                                 TextSpan(
                                   text: "26\u00B0",
                                   style: TextStyle(
-                                    color: Vx.gray600,
+                                    color: theme.iconTheme.color,
                                     fontSize: 16,
                                   ),
                                 ),

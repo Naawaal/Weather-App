@@ -19,7 +19,7 @@ class CustomTheme {
   );
 
   static final darkTheme = ThemeData(
-    cardColor: Colors.white,
+    cardColor: bgColor.withOpacity(0.6),
     fontFamily: GoogleFonts.poppins().fontFamily,
     scaffoldBackgroundColor: bgColor,
     primaryColor: Colors.white,

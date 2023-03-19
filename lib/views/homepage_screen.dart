@@ -3,25 +3,31 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:weather_app/consts/images.dart';
+import 'package:weather_app/controllers/main_controller.dart';
 
 class HomepageScreen extends StatelessWidget {
   const HomepageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final MainController mainController = Get.put(MainController());
     var date = DateFormat("yMMMMd").format(DateTime.now());
     var theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
+        backgroundColor: theme.appBarTheme.backgroundColor,
         title: date.text.color(theme.iconTheme.color).make(),
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.changeTheme(ThemeData.dark());
-            },
-            icon: const Icon(Icons.light_mode_outlined),
-            color: theme.iconTheme.color,
+          Obx(
+            () => IconButton(
+              onPressed: () {
+                mainController.changeTheme();
+              },
+              icon: Icon(mainController.isDark.value
+                  ? Icons.light_mode_outlined
+                  : Icons.dark_mode_outlined),
+              color: theme.iconTheme.color,
+            ),
           ),
           IconButton(
             onPressed: () {},
@@ -167,7 +173,12 @@ class HomepageScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  "Next 7 Days".text.semiBold.size(16).make(),
+                  "Next 7 Days"
+                      .text
+                      .semiBold
+                      .size(16)
+                      .color(theme.iconTheme.color)
+                      .make(),
                   TextButton(
                     onPressed: () {},
                     child: const Text("View All"),
@@ -184,6 +195,7 @@ class HomepageScreen extends StatelessWidget {
                     ),
                   );
                   return Card(
+                    color: theme.cardColor,
                     elevation: 1,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -191,7 +203,10 @@ class HomepageScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(child: day.text.semiBold.make()),
+                          Expanded(
+                              child: day.text.semiBold
+                                  .color(theme.iconTheme.color)
+                                  .make()),
                           Expanded(
                             child: TextButton.icon(
                               onPressed: () {},
